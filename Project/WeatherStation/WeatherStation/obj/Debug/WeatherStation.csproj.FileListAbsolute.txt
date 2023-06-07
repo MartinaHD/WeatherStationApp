@@ -1,0 +1,11 @@
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\bin\Debug\WeatherStation.exe.config
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\bin\Debug\WeatherStation.exe
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\bin\Debug\WeatherStation.pdb
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\obj\Debug\WeatherStation.csprojResolveAssemblyReference.cache
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\obj\Debug\WeatherStation.FormWeather.resources
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\obj\Debug\WeatherStation.Properties.Resources.resources
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\obj\Debug\WeatherStation.csproj.GenerateResource.Cache
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\obj\Debug\WeatherStation.exe
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\obj\Debug\WeatherStation.pdb
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\obj\Debug\WeatherStation.LoginForm.resources
+G:\.NET_FRAMEWORK\Project\WeatherStation\WeatherStation\obj\Debug\WeatherStation.RegistrationForm.resources
