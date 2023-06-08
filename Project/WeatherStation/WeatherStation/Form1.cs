@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,7 @@ namespace WeatherStation
 {
     public partial class FormWeather : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=USER-PC\SQLEXPRESS;Initial Catalog=weather_station_inf;Integrated Security=True");
+        SqlConnection connect = new SqlConnection(@"Data Source=USER-PC;Initial Catalog=weather_station_inf;Integrated Security=True");
         public FormWeather()
         {
             InitializeComponent();
@@ -22,6 +22,7 @@ namespace WeatherStation
 
         public void FormVisible()
         {
+            connect.Open();
             SqlConnection conn = new SqlConnection(@"Data Source=USER-PC;Initial Catalog=users;Integrated Security=True");
             conn.Open();
             SqlCommand command = conn.CreateCommand();
@@ -33,23 +34,22 @@ namespace WeatherStation
             {
                 if (da.GetValue(0).ToString() == "ordinary user")
                 {
-                    lblStationID.Visible = false;
-                    txtBoxStationID.Visible = false;
-                    lblCity.Visible = false;
-                    txtBoxCity.Visible = false;
+                    /*da.Close();
+                    da.Dispose();*/
+                    txtBoxStationID.Enabled = false;
+                    txtBoxCity.Enabled = false;
                     lblPercentID.Visible = false;
                     txtBoxPercentID.Visible = false;
-                    txtBoxMeasurementHour.Visible = false;
-                    txtBoxTemperature.Visible = false;
-                    txtBoxRainPercent.Visible = false;
-                    txtBoxPressure.Visible = false;
+                    //groupBox3.Visible = false;
+
                     dataGridViewWeather.Visible = false;
                     groupBoxTables.Visible = false;
-                    btnInsert.Visible = false;
-                    btnDelete.Visible = false;
-                    btnUpdate.Visible = false;
-                    btnSearch.Visible = false;
-
+                    
+                    btnSearch.Enabled = false;
+                    btnUpdate.Enabled = false;
+                    btnInsert.Enabled = false;
+                    btnDelete.Enabled = false;              
+                }
                     /*SqlCommand cmd1 = new SqlCommand("SELECT MeasurementDate, DayLength FROM WeatherStation WHERE MeasurementID = @MeasurementID", conn);
                     SqlCommand cmd2 = new SqlCommand("SELECT WindSpeedMS, CloudCoverPercentage, Rain FROM MeasurementDetailsDay WHERE DateID = @DateID", conn);
                     SqlCommand cmd3 = new SqlCommand("MIN(TemperatureCelsius), MAX(TemperatureCelsius), AVG(ChanceOfRainPercent) FROM MeasurementDetailsHour WHERE MeasurementID = @MeasurementID", conn);
@@ -76,32 +76,37 @@ namespace WeatherStation
                         txtBoxMaxTemp.Text = da3.GetValue(1).ToString();
                         txtBoxRainPercent.Text = da3.GetValue(2).ToString();
                     }*/
-                }
-                else if (da.GetValue(0).ToString() == "advanced user")
+                if (da.GetValue(0).ToString() == "advanced user")
                 {
-                    lblStationID.Visible = true;
-                    txtBoxStationID.Visible = true;
-                    lblCity.Visible = true;
-                    txtBoxCity.Visible = true;
+                    txtBoxStationID.Enabled = true;
+                    txtBoxCity.Enabled = true;
                     lblPercentID.Visible = true;
                     txtBoxPercentID.Visible = true;
-                    txtBoxMeasurementHour.Visible = true;
-                    txtBoxTemperature.Visible = true;
-                    txtBoxRainPercent.Visible = true;
-                    txtBoxPressure.Visible = true;
+                    groupBox3.Visible = true;
                     dataGridViewWeather.Visible = true;
                     groupBoxTables.Visible = true;
-                    btnDisplay.Visible = true;
-                    btnSearch.Visible = true;
+                    btnDisplay.Enabled = true;
+                    btnSearch.Enabled = true;
+                    btnUpdate.Enabled = false;
+                    btnInsert.Enabled = false;
+                    btnDelete.Enabled = false;
                 }
-                else
+                else if (da.GetValue(0).ToString() == "moderator")
                 {
-                    btnInsert.Visible = true;
-                    btnDelete.Visible = true;
-                    btnUpdate.Visible = true;
+                    txtBoxStationID.Enabled = true;
+                    txtBoxCity.Enabled = true;
+                    lblPercentID.Visible = true;
+                    txtBoxPercentID.Visible = true;
+                    dataGridViewWeather.Visible = true;
+                    groupBoxTables.Visible = true;
+                    btnSearch.Enabled = true;
+                    btnUpdate.Enabled = true;
+                    btnInsert.Enabled = true;
+                    btnDelete.Enabled = true;
                 }
             }
             conn.Close();
+            connect.Close();
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -253,6 +258,16 @@ namespace WeatherStation
                 txtBoxRainPercent.Text = da.GetValue(2).ToString();
             }
             connect.Close();
+
+            /*int min = int.Parse(dataGridViewWeather.Rows[0].Cells[3].Value.ToString());
+            for (int i = 1; i < dataGridViewWeather.Rows.Count; i++)
+            {
+                if (min > int.Parse(dataGridViewWeather.Rows[i].Cells[3].Value.ToString()))
+                {
+                    min = int.Parse(dataGridViewWeather.Rows[i].Cells[3].Value.ToString());
+                }
+            }
+            txtBoxMinTemp.Text = min.ToString();*/  
         }
     }
 }
