@@ -101,7 +101,7 @@
             // 
             this.txtBoxCity.Location = new System.Drawing.Point(206, 65);
             this.txtBoxCity.Name = "txtBoxCity";
-            this.txtBoxCity.Size = new System.Drawing.Size(164, 26);
+            this.txtBoxCity.Size = new System.Drawing.Size(164, 50);
             this.txtBoxCity.TabIndex = 1;
             // 
             // lblDate
